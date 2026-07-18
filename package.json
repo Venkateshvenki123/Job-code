@@ -1,0 +1,12 @@
+{
+  "name": "new-website-platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend-node"
+  ],
+  "scripts": {
+    "frontend": "npm --workspace frontend run dev",
+    "node-api": "npm --workspace backend-node run dev"
+  }
+}

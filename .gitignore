@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+target/
+.cache/
+.vite/
+*.log
+.DS_Store
+coverage/
+__pycache__/
+*.pyc
+frontend/verify-*.png
+frontend/verify-*.mjs

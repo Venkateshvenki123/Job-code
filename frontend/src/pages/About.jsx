@@ -1,0 +1,9 @@
+import PageHeader from "../components/PageHeader.jsx";
+import ContentCard from "../components/ContentCard.jsx";
+import { readRecord, readTable } from "../data/store.js";
+
+export default function About() {
+  const home = readRecord("homeContent");
+  const faqs = ["How do I apply for jobs?", "Can I save jobs?", "Who manages the content?", "How do companies get listed?"];
+  return <div className="page-enter space-y-8"><PageHeader eyebrow="About Us" title="About Us" description="A professional job portal where all public content is dynamically controlled through the Admin Dashboard." /><section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">{["Company Overview", "Mission", "Vision", "What We Offer", "Why Choose Us"].map((item) => <ContentCard key={item} title={item} description={item === "Mission" ? home.mission : item === "Vision" ? home.vision : "We connect students, companies, courses, resources, jobs, and internships in a clean scalable platform."} action="Read" />)}</section><section className="glass rounded-3xl p-6"><h2 className="mb-4 text-3xl font-black">Team Members</h2><div className="grid gap-4 md:grid-cols-3">{["Platform Admin", "Career Manager", "Learning Coordinator"].map((member) => <div className="rounded-2xl border border-white/10 bg-white/5 p-4" key={member}><strong>{member}</strong><p className="text-soft-gray">Responsible for keeping content updated and useful.</p></div>)}</div></section><section className="grid gap-4 lg:grid-cols-2"><div className="glass rounded-3xl p-6"><h2 className="text-3xl font-black">Contact Information</h2><p className="mt-3 text-soft-gray">Email: {home.contactEmail}<br />Social: {home.socials}</p></div><div className="glass rounded-3xl p-6"><h2 className="text-3xl font-black">Frequently Asked Questions</h2><ul className="mt-4 grid gap-2 text-soft-gray">{faqs.map((faq) => <li key={faq}>- {faq}</li>)}</ul></div></section></div>;
+}
