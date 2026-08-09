@@ -9,6 +9,16 @@ export const navItems = [
   { label: "Contact Us", path: "/contact" }
 ];
 
+export const roles = [
+  { id: "super-admin", label: "Super Admin", permissions: ["all"] },
+  { id: "admin", label: "Admin", permissions: ["content", "jobs", "applications", "reports"] },
+  { id: "hr", label: "HR", permissions: ["assignedJobs", "applications", "interviews"] },
+  { id: "manager", label: "Hiring Manager", permissions: ["reviews", "feedback", "selection"] },
+  { id: "candidate", label: "Candidate", permissions: ["apply", "track", "submitContent"] }
+];
+
+export const pipelineStages = ["Applied", "Resume Screening", "HR Round", "Technical Round", "Manager Round", "Final HR Discussion", "Offer Released", "Joined", "Rejected"];
+
 export const defaultHomeContent = {
   heroTitle: "Learn, Build, and Grow Your Career",
   heroSubtitle: "Access courses, study resources, internships, career opportunities, and learning resources in one place.",
@@ -27,8 +37,8 @@ export const defaultTestimonials = [
 ];
 
 export const defaultJobs = [
-  { id: "job-1", companyLogo: "", companyName: "TechNova", jobTitle: "Junior React Developer", location: "Remote", salary: "$45k - $65k", experience: "0-2 years", employmentType: "Full-time", skillsRequired: "React, JavaScript, CSS", jobDescription: "Build responsive frontend features for a modern SaaS product.", responsibilities: "Develop UI components, fix bugs, collaborate with backend teams.", qualifications: "Portfolio projects and strong JavaScript fundamentals.", applicationLink: "https://example.com/apply", lastDate: "2026-12-31", expiryDate: "2026-12-31", category: "Web Development", published: true, featured: true, views: 240, createdAt: "2026-07-01" },
-  { id: "job-2", companyLogo: "", companyName: "DataPulse", jobTitle: "Python Data Associate", location: "Bengaluru", salary: "$42k - $60k", experience: "1-3 years", employmentType: "Full-time", skillsRequired: "Python, SQL, Dashboards", jobDescription: "Support analytics projects and build data workflows.", responsibilities: "Clean data, create dashboards, automate reports.", qualifications: "Python basics, SQL, and analytical thinking.", applicationLink: "https://example.com/apply", lastDate: "2026-11-30", expiryDate: "2026-11-30", category: "Data Analytics", published: true, featured: false, views: 180, createdAt: "2026-07-01" }
+  { id: "job-1", companyLogo: "", companyName: "TechNova", jobTitle: "Junior React Developer", department: "Engineering", location: "Remote", workMode: "Remote", salary: "$45k - $65k", experience: "0-2 years", employmentType: "Full-time", skillsRequired: "React, JavaScript, CSS", jobDescription: "Build responsive frontend features for a modern SaaS product.", responsibilities: "Develop UI components, fix bugs, collaborate with backend teams.", qualifications: "Portfolio projects and strong JavaScript fundamentals.", benefits: "Remote work, mentorship, learning budget", vacancies: "4", hiringManager: "Riya Sharma", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-12-31", expiryDate: "2026-12-31", category: "Web Development", status: "Open", published: true, featured: true, views: 240, createdAt: "2026-07-01" },
+  { id: "job-2", companyLogo: "", companyName: "DataPulse", jobTitle: "Python Data Associate", department: "Analytics", location: "Bengaluru", workMode: "Hybrid", salary: "$42k - $60k", experience: "1-3 years", employmentType: "Full-time", skillsRequired: "Python, SQL, Dashboards", jobDescription: "Support analytics projects and build data workflows.", responsibilities: "Clean data, create dashboards, automate reports.", qualifications: "Python basics, SQL, and analytical thinking.", benefits: "Hybrid work, certification support", vacancies: "2", hiringManager: "Karan Mehta", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-11-30", expiryDate: "2026-11-30", category: "Data Analytics", status: "Open", published: true, featured: false, views: 180, createdAt: "2026-07-01" }
 ];
 
 export const defaultInternships = [
@@ -52,8 +62,33 @@ export const defaultCompanies = [
 ];
 
 export const defaultUsers = [
-  { id: "user-1", name: "Demo Student", email: "student@example.com", role: "student", savedJobs: [] }
+  { id: "user-1", name: "Demo Student", email: "student@example.com", role: "candidate", savedJobs: ["job-1"] },
+  { id: "user-2", name: "Anika HR", email: "hr@example.com", role: "hr", savedJobs: [] },
+  { id: "user-3", name: "Riya Sharma", email: "manager@example.com", role: "manager", savedJobs: [] }
 ];
 
 export const defaultMessages = [];
 export const defaultCategories = ["Programming", "Web Development", "AI & Machine Learning", "Data Analytics", "Cloud Computing", "UI/UX Design", "Cybersecurity"];
+
+export const defaultApplications = [
+  { id: "app-1", candidateName: "Demo Student", candidateEmail: "student@example.com", jobId: "job-1", jobTitle: "Junior React Developer", companyName: "TechNova", resumeUrl: "", stage: "Technical Round", score: "82", assignedHr: "Anika HR", hiringManager: "Riya Sharma", interviewDate: "2026-08-18", notes: "Strong portfolio, schedule React assessment.", createdAt: "2026-08-01" },
+  { id: "app-2", candidateName: "Neha Rao", candidateEmail: "neha@example.com", jobId: "job-2", jobTitle: "Python Data Associate", companyName: "DataPulse", resumeUrl: "", stage: "Resume Screening", score: "74", assignedHr: "Anika HR", hiringManager: "Karan Mehta", interviewDate: "2026-08-21", notes: "Good SQL fundamentals.", createdAt: "2026-08-01" }
+];
+
+export const defaultInterviewQuestions = [
+  { id: "q-1", company: "TechNova", role: "React Developer", technology: "JavaScript", experienceLevel: "Entry", department: "Engineering", question: "Explain how React state updates are batched.", answer: "React groups compatible state updates to reduce renders and improve UI performance.", difficulty: "Medium", tags: "React, State", interviewRound: "Technical Round", askedDate: "2026-07-20", notes: "Frequently asked in frontend rounds.", status: "Published", submittedBy: "Admin", createdAt: "2026-07-20" },
+  { id: "q-2", company: "DataPulse", role: "Data Analyst", technology: "SQL", experienceLevel: "Junior", department: "Analytics", question: "What is the difference between WHERE and HAVING?", answer: "WHERE filters rows before grouping; HAVING filters grouped results.", difficulty: "Easy", tags: "SQL, Analytics", interviewRound: "Technical Round", askedDate: "2026-07-22", notes: "Useful screening question.", status: "Pending", submittedBy: "Candidate", createdAt: "2026-07-22" }
+];
+
+export const defaultInterviewExperiences = [
+  { id: "exp-1", companyName: "TechNova", jobRole: "Junior React Developer", experienceLevel: "0-2 years", interviewDate: "2026-07-25", location: "Remote", interviewMode: "Video", rounds: "3", questionsAsked: "React hooks, routing, API state, CSS layout.", codingQuestions: "Build a searchable card list.", hrQuestions: "Why frontend engineering?", technicalQuestions: "Explain useMemo and useEffect dependencies.", overallExperience: "Structured, respectful, and practical.", difficultyRating: "Medium", tips: "Prepare project walkthroughs and JavaScript fundamentals.", selectionResult: "Selected", anonymous: false, status: "Published", featured: true, createdAt: "2026-07-25" }
+];
+
+export const defaultNotifications = [
+  { id: "note-1", title: "New application received", message: "Demo Student applied for Junior React Developer.", audience: "Admin,HR", status: "Unread", createdAt: "2026-08-01" },
+  { id: "note-2", title: "Interview scheduled", message: "Technical Round scheduled for Demo Student.", audience: "Candidate,Manager", status: "Unread", createdAt: "2026-08-02" }
+];
+
+export const defaultActivityLogs = [
+  { id: "log-1", actor: "Admin", action: "Published job", entity: "Junior React Developer", createdAt: "2026-08-01" }
+];

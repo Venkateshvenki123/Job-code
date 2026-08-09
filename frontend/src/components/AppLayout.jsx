@@ -9,6 +9,8 @@ const navItems = [
   ["Courses", "/courses"],
   ["Resources", "/resources"],
   ["Companies", "/companies"],
+  ["Questions", "/interview-questions"],
+  ["Experiences", "/interview-experiences"],
   ["About Us", "/about"],
   ["Contact Us", "/contact"],
   ["Login/Admin", "/admin/login"]
@@ -45,7 +47,7 @@ export default function AppLayout() {
       </header>
       {mobileOpen && <div className="fixed inset-0 z-[60] bg-black/70 p-4 lg:hidden"><div className="glass h-full rounded-3xl p-4"><div className="mb-4 flex items-center justify-between"><strong>Menu</strong><button onClick={() => setMobileOpen(false)} aria-label="Close menu"><X /></button></div><nav className="grid gap-1"><NavLinks onClick={() => setMobileOpen(false)} /></nav></div></div>}
       <main className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><Breadcrumbs /><Outlet /></main>
-      <footer className="relative z-10 border-t border-white/10 px-4 py-8"><div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-soft-gray md:flex-row md:items-center md:justify-between"><p><strong className="text-white">Job Portal</strong> - Professional education and career platform.</p><div className="flex flex-wrap gap-4"><Link to="/jobs">Jobs</Link><Link to="/internships">Internships</Link><Link to="/courses">Courses</Link><Link to="/resources">Resources</Link><Link to="/admin/login">Admin</Link></div></div></footer>
+      <footer className="relative z-10 border-t border-white/10 px-4 py-8"><div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-soft-gray md:flex-row md:items-center md:justify-between"><p><strong className="text-white">Job Portal</strong> - Professional education and career platform.</p><div className="flex flex-wrap gap-4"><Link to="/jobs">Jobs</Link><Link to="/internships">Internships</Link><Link to="/courses">Courses</Link><Link to="/resources">Resources</Link><Link to="/interview-questions">Questions</Link><Link to="/interview-experiences">Experiences</Link><Link to="/portal/hr">HR</Link><Link to="/portal/manager">Manager</Link><Link to="/portal/candidate">Candidate</Link><Link to="/admin/login">Admin</Link></div></div></footer>
     </div>
   );
 }

@@ -13,6 +13,9 @@ import Resources from "./pages/Resources.jsx";
 import Companies from "./pages/Companies.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import InterviewQuestions from "./pages/InterviewQuestions.jsx";
+import InterviewExperiences from "./pages/InterviewExperiences.jsx";
+import RolePortal from "./pages/RolePortal.jsx";
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 
@@ -29,6 +32,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="companies" element={<Companies />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="interview-questions" element={<InterviewQuestions />} />
+          <Route path="interview-experiences" element={<InterviewExperiences />} />
+          <Route path="portal/:role" element={<RolePortal />} />
         </Route>
         <Route path="admin/login" element={<AdminLogin />} />
         <Route path="admin" element={<ProtectedAdminRoute><AdminLayout /></ProtectedAdminRoute>}>

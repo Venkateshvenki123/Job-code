@@ -8,6 +8,11 @@ A modern responsive educational and career platform built with React, React Rout
 - Dedicated pages: Home, Jobs, Internships, Courses, Resources, Companies, About, Contact
 - Admin Login and protected Admin Dashboard
 - Admin CRUD for Jobs, Internships, Courses, Resources, Companies, and Home Page Content
+- RMS collections for Applications, Interview Questions, Interview Experiences, Notifications, and Activity Logs
+- Role portal routes for Super Admin, Admin, HR, Hiring Manager, and Candidate workspaces
+- Recruitment pipeline stages from Applied through Joined/Rejected
+- Public Interview Question Bank with approval-based community submissions
+- Public Interview Experiences page with approval-based candidate stories
 - Publish/unpublish and featured controls
 - Expiry date support with expired items hidden from public pages
 - Search and filters for Jobs, Internships, Courses, and Resources
@@ -41,7 +46,17 @@ Demo credentials:
 - Username/email: `admin@newwebsite.dev`
 - Password: `cyber-admin`
 
-The current demo stores admin session and portal data in browser storage. For production, connect the data adapter to the Node API and database using the schema in `database/schema.sql`.
+The current demo stores admin session, portal data, RMS records, and approval workflows in browser storage. For production, connect the data adapter to the Node API and database using the schema in `database/schema.sql`.
+
+## RMS Routes
+
+- `/interview-questions`
+- `/interview-experiences`
+- `/portal/super-admin`
+- `/portal/admin`
+- `/portal/hr`
+- `/portal/manager`
+- `/portal/candidate`
 
 ## Security Notes
 
