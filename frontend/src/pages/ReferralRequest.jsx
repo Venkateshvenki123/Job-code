@@ -5,6 +5,7 @@ import PageHeader from "../components/PageHeader.jsx";
 import { createItem, readTable } from "../data/store.js";
 
 const fields = ["fullName", "email", "phone", "linkedInProfile", "portfolioGithub", "resumeUpload", "currentLocation", "experience", "currentRole", "skills", "suitability", "additionalMessage"];
+const steps = ["Profile", "Resume", "Skills", "Referral Message", "Review"];
 
 function improveMessage(text, jobTitle, companyName) {
   if (!text.trim()) return "";
@@ -63,6 +64,17 @@ export default function ReferralRequest() {
         <div>
           <p className="text-sm font-bold text-muted">Referral status</p>
           <strong className="mt-1 block text-xl text-primaryText">Submitted after review</strong>
+        </div>
+      </section>
+
+      <section className="glass rounded-[2rem] p-4">
+        <div className="grid gap-3 md:grid-cols-5">
+          {steps.map((step, index) => (
+            <div key={step} className="flex items-center gap-3 rounded-2xl bg-white/55 p-3">
+              <span className="icon-3d h-10 w-10 shrink-0 text-neon-green text-sm font-black">{String(index + 1).padStart(2, "0")}</span>
+              <span className="text-sm font-black text-primaryText">{step}</span>
+            </div>
+          ))}
         </div>
       </section>
 
