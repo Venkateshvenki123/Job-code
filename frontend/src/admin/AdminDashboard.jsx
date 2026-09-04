@@ -46,6 +46,30 @@ const configs = {
     fields: ["name", "provider", "category", "difficulty", "cost", "duration", "officialLink", "preparationMaterial"],
     toggles: ["published", "featured"]
   },
+  startups: {
+    title: "Startups",
+    singular: "Startup",
+    fields: ["logo", "name", "tagline", "industry", "stage", "fundingStage", "foundedYear", "founders", "headquarters", "workLocations", "remoteAvailability", "companySize", "website", "linkedInUrl", "careersPage", "description", "technologiesUsed", "fundingInformation", "benefits", "cultureInformation", "hiringStatus", "lastUpdatedDate"],
+    toggles: ["referralAvailability", "published", "featured"]
+  },
+  referralRequests: {
+    title: "Referral Management",
+    singular: "Referral",
+    fields: ["startupId", "companyName", "jobId", "internshipId", "opportunityTitle", "fullName", "email", "phone", "linkedInProfile", "portfolioGithub", "resumeUpload", "currentLocation", "experience", "currentRole", "skills", "suitability", "additionalMessage", "status", "assignedHr", "assignedReferrer", "notes"],
+    toggles: []
+  },
+  aiSearchHistory: {
+    title: "AI Search History",
+    singular: "AI Search",
+    fields: ["query", "extractedIntent"],
+    toggles: []
+  },
+  aiRecommendations: {
+    title: "AI Recommendations",
+    singular: "Recommendation",
+    fields: ["candidateId", "type", "entityId", "score", "matchingSkills", "missingSkills", "recommendation"],
+    toggles: []
+  },
   companies: {
     title: "Companies",
     singular: "Company",
@@ -86,6 +110,10 @@ const labels = {
   learningPlatforms: "name",
   studyMaterials: "title",
   certifications: "name",
+  startups: "name",
+  referralRequests: "fullName",
+  aiSearchHistory: "query",
+  aiRecommendations: "type",
   companies: "name",
   applications: "candidateName",
   interviewQuestions: "question",
@@ -108,7 +136,15 @@ const multilineFields = new Set([
   "tips",
   "notes",
   "message",
-  "preparationMaterial"
+  "preparationMaterial",
+  "cultureInformation",
+  "technologiesUsed",
+  "fundingInformation",
+  "benefits",
+  "suitability",
+  "additionalMessage",
+  "recommendation",
+  "extractedIntent"
 ]);
 
 function fieldLabel(field) {

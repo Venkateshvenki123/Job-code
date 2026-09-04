@@ -40,6 +40,8 @@ export default function AdminLayout() {
               ["Internships", "#manage-internships"],
               ["Courses", "#manage-courses"],
               ["Resources", "#manage-resources"],
+              ["Startups", "#manage-startups"],
+              ["Referrals", "#manage-referralRequests"],
               ["Companies", "#manage-companies"]
             ].map(([label, href]) => (
               <a key={label} href={href} className="flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-bold text-secondaryText transition hover:bg-primary/10 hover:text-primary">

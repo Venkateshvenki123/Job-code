@@ -9,6 +9,10 @@ import Home from "./pages/Home.jsx";
 import Jobs from "./pages/Jobs.jsx";
 import Internships from "./pages/Internships.jsx";
 import Courses from "./pages/Courses.jsx";
+import Startups from "./pages/Startups.jsx";
+import StartupProfile from "./pages/StartupProfile.jsx";
+import ReferralRequest from "./pages/ReferralRequest.jsx";
+import AiCareerAssistant from "./pages/AiCareerAssistant.jsx";
 import Resources from "./pages/Resources.jsx";
 import LearningPlatforms from "./pages/LearningPlatforms.jsx";
 import StudyMaterial from "./pages/StudyMaterial.jsx";
@@ -28,6 +32,10 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<Home />} />
+          <Route path="startups" element={<Startups />} />
+          <Route path="startups/:startupId" element={<StartupProfile />} />
+          <Route path="referrals/new" element={<ReferralRequest />} />
+          <Route path="ai-career-assistant" element={<AiCareerAssistant />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="internships" element={<Internships />} />
           <Route path="courses" element={<Courses />} />

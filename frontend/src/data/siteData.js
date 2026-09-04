@@ -1,5 +1,6 @@
 export const navItems = [
   { label: "Home", path: "/" },
+  { label: "Startups", path: "/startups" },
   { label: "Jobs", path: "/jobs" },
   { label: "Internships", path: "/internships" },
   { label: "Courses", path: "/courses" },
@@ -37,13 +38,13 @@ export const defaultTestimonials = [
 ];
 
 export const defaultJobs = [
-  { id: "job-1", companyLogo: "", companyName: "TechNova", jobTitle: "Junior React Developer", department: "Engineering", location: "Remote", workMode: "Remote", salary: "$45k - $65k", experience: "0-2 years", employmentType: "Full-time", skillsRequired: "React, JavaScript, CSS", jobDescription: "Build responsive frontend features for a modern SaaS product.", responsibilities: "Develop UI components, fix bugs, collaborate with backend teams.", qualifications: "Portfolio projects and strong JavaScript fundamentals.", benefits: "Remote work, mentorship, learning budget", vacancies: "4", hiringManager: "Riya Sharma", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-12-31", expiryDate: "2026-12-31", category: "Web Development", status: "Open", published: true, featured: true, views: 240, createdAt: "2026-07-01" },
-  { id: "job-2", companyLogo: "", companyName: "DataPulse", jobTitle: "Python Data Associate", department: "Analytics", location: "Bengaluru", workMode: "Hybrid", salary: "$42k - $60k", experience: "1-3 years", employmentType: "Full-time", skillsRequired: "Python, SQL, Dashboards", jobDescription: "Support analytics projects and build data workflows.", responsibilities: "Clean data, create dashboards, automate reports.", qualifications: "Python basics, SQL, and analytical thinking.", benefits: "Hybrid work, certification support", vacancies: "2", hiringManager: "Karan Mehta", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-11-30", expiryDate: "2026-11-30", category: "Data Analytics", status: "Open", published: true, featured: false, views: 180, createdAt: "2026-07-01" }
+  { id: "job-1", startupId: "startup-1", companyLogo: "", companyName: "TechNova", jobTitle: "Junior React Developer", department: "Engineering", location: "Remote", workMode: "Remote", salary: "$45k - $65k", experience: "0-2 years", employmentType: "Full-time", skillsRequired: "React, JavaScript, CSS", jobDescription: "Build responsive frontend features for a modern SaaS product.", responsibilities: "Develop UI components, fix bugs, collaborate with backend teams.", qualifications: "Portfolio projects and strong JavaScript fundamentals.", benefits: "Remote work, mentorship, learning budget", vacancies: "4", hiringManager: "Riya Sharma", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-12-31", expiryDate: "2026-12-31", category: "Web Development", status: "Open", published: true, featured: true, views: 240, createdAt: "2026-07-01" },
+  { id: "job-2", startupId: "startup-2", companyLogo: "", companyName: "DataPulse", jobTitle: "Python Data Associate", department: "Analytics", location: "Bengaluru", workMode: "Hybrid", salary: "$42k - $60k", experience: "1-3 years", employmentType: "Full-time", skillsRequired: "Python, SQL, Dashboards", jobDescription: "Support analytics projects and build data workflows.", responsibilities: "Clean data, create dashboards, automate reports.", qualifications: "Python basics, SQL, and analytical thinking.", benefits: "Hybrid work, certification support", vacancies: "2", hiringManager: "Karan Mehta", assignedHr: "Anika HR", applicationLink: "https://example.com/apply", lastDate: "2026-11-30", expiryDate: "2026-11-30", category: "Data Analytics", status: "Open", published: true, featured: false, views: 180, createdAt: "2026-07-01" }
 ];
 
 export const defaultInternships = [
-  { id: "int-1", company: "CodeNest Labs", role: "Frontend Intern", duration: "12 weeks", stipend: "$400/month", location: "Remote", mode: "Remote", eligibility: "Students and freshers", skills: "React, Git, UI", applyLink: "https://example.com/apply", lastDate: "2026-10-30", expiryDate: "2026-10-30", published: true, featured: true, createdAt: "2026-07-01" },
-  { id: "int-2", company: "CloudNova", role: "Cloud Intern", duration: "8 weeks", stipend: "$300/month", location: "Hyderabad", mode: "Hybrid", eligibility: "Final-year students", skills: "Cloud, Linux, APIs", applyLink: "https://example.com/apply", lastDate: "2026-09-30", expiryDate: "2026-09-30", published: true, featured: false, createdAt: "2026-07-01" }
+  { id: "int-1", startupId: "startup-3", company: "CodeNest Labs", role: "Frontend Intern", duration: "12 weeks", stipend: "$400/month", location: "Remote", mode: "Remote", eligibility: "Students and freshers", skills: "React, Git, UI", applyLink: "https://example.com/apply", lastDate: "2026-10-30", expiryDate: "2026-10-30", published: true, featured: true, createdAt: "2026-07-01" },
+  { id: "int-2", startupId: "startup-4", company: "CloudNova", role: "Cloud Intern", duration: "8 weeks", stipend: "$300/month", location: "Hyderabad", mode: "Hybrid", eligibility: "Final-year students", skills: "Cloud, Linux, APIs", applyLink: "https://example.com/apply", lastDate: "2026-09-30", expiryDate: "2026-09-30", published: true, featured: false, createdAt: "2026-07-01" }
 ];
 
 export const defaultCourses = [
@@ -69,6 +70,161 @@ export const defaultStudyMaterials = [
 export const defaultCertifications = [
   { id: "cert-1", name: "AWS Cloud Practitioner", provider: "Amazon Web Services", category: "Cloud", difficulty: "Beginner", cost: "$100", duration: "4-6 weeks", officialLink: "https://aws.amazon.com/certification/", preparationMaterial: "Cloud basics, billing, IAM, compute, storage", published: true, featured: true, createdAt: "2026-07-01" },
   { id: "cert-2", name: "Google Data Analytics Certificate", provider: "Google", category: "Data Analytics", difficulty: "Beginner", cost: "Subscription", duration: "3-6 months", officialLink: "https://grow.google/certificates/data-analytics/", preparationMaterial: "Spreadsheets, SQL, dashboards, case studies", published: true, featured: false, createdAt: "2026-07-01" }
+];
+
+export const startupCategories = ["AI", "SaaS", "FinTech", "EdTech", "HealthTech", "E-commerce", "Cloud", "Cybersecurity", "Developer Tools", "Data", "Blockchain", "Robotics", "HRTech", "Consumer Technology", "Other"];
+
+export const referralStatuses = ["Submitted", "Under Review", "Referral Available", "Referred", "Application Submitted", "Interview", "Selected", "Rejected"];
+
+export const defaultStartups = [
+  {
+    id: "startup-1",
+    logo: "",
+    name: "TechNova",
+    tagline: "Product engineering for modern SaaS teams",
+    industry: "SaaS",
+    stage: "Seed",
+    fundingStage: "Seed",
+    foundedYear: "2022",
+    founders: "Riya Sharma, Aman Verma",
+    headquarters: "Remote",
+    workLocations: "Remote, Bengaluru, Pune",
+    remoteAvailability: "Remote",
+    companySize: "50-200",
+    website: "https://example.com",
+    linkedInUrl: "https://linkedin.com",
+    careersPage: "https://example.com/careers",
+    description: "TechNova builds workflow software for engineering teams and hires practical builders across frontend, backend, product, and data.",
+    technologiesUsed: "React, Node.js, PostgreSQL, AWS, Docker",
+    fundingInformation: "$4M seed funding",
+    benefits: "Remote work, mentorship, learning budget, flexible hours",
+    cultureInformation: "High-ownership product culture with strong documentation and thoughtful engineering reviews.",
+    referralAvailability: true,
+    hiringStatus: "Hiring Now",
+    published: true,
+    featured: true,
+    lastUpdatedDate: "2026-08-01"
+  },
+  {
+    id: "startup-2",
+    logo: "",
+    name: "DataPulse",
+    tagline: "Analytics automation for fast-growing businesses",
+    industry: "Data",
+    stage: "Series A",
+    fundingStage: "Series A",
+    foundedYear: "2021",
+    founders: "Karan Mehta, Leena Rao",
+    headquarters: "Bengaluru",
+    workLocations: "Bengaluru, Hyderabad",
+    remoteAvailability: "Hybrid",
+    companySize: "50-200",
+    website: "https://example.com",
+    linkedInUrl: "https://linkedin.com",
+    careersPage: "https://example.com/careers",
+    description: "DataPulse helps companies automate data workflows, reporting, and operational analytics.",
+    technologiesUsed: "Python, SQL, Airflow, React, BigQuery",
+    fundingInformation: "$12M Series A",
+    benefits: "Hybrid work, certification support, health coverage",
+    cultureInformation: "Analytical, collaborative, and focused on measurable customer outcomes.",
+    referralAvailability: true,
+    hiringStatus: "Hiring Now",
+    published: true,
+    featured: false,
+    lastUpdatedDate: "2026-08-02"
+  },
+  {
+    id: "startup-3",
+    logo: "",
+    name: "CodeNest Labs",
+    tagline: "Career-first developer training and products",
+    industry: "EdTech",
+    stage: "Early-stage",
+    fundingStage: "Pre-seed",
+    foundedYear: "2023",
+    founders: "Mira Khan",
+    headquarters: "Remote",
+    workLocations: "Remote",
+    remoteAvailability: "Remote",
+    companySize: "11-50",
+    website: "https://example.com",
+    linkedInUrl: "https://linkedin.com",
+    careersPage: "https://example.com/careers",
+    description: "CodeNest Labs combines training, mentor-led projects, and hiring partnerships for early career developers.",
+    technologiesUsed: "React, Firebase, Node.js, Tailwind",
+    fundingInformation: "Bootstrapped",
+    benefits: "Remote internships, mentor reviews, portfolio projects",
+    cultureInformation: "Student-friendly, feedback-focused, and project-led.",
+    referralAvailability: true,
+    hiringStatus: "Hiring Interns",
+    published: true,
+    featured: true,
+    lastUpdatedDate: "2026-08-04"
+  },
+  {
+    id: "startup-4",
+    logo: "",
+    name: "CloudNova",
+    tagline: "Cloud automation for lean infrastructure teams",
+    industry: "Cloud",
+    stage: "Growth",
+    fundingStage: "Series B",
+    foundedYear: "2020",
+    founders: "Dev Patel, Sara Iyer",
+    headquarters: "Hyderabad",
+    workLocations: "Hyderabad, Remote",
+    remoteAvailability: "Hybrid",
+    companySize: "200-500",
+    website: "https://example.com",
+    linkedInUrl: "https://linkedin.com",
+    careersPage: "https://example.com/careers",
+    description: "CloudNova builds infrastructure tools for deployment, monitoring, and cloud cost visibility.",
+    technologiesUsed: "Kubernetes, AWS, Go, Python, Terraform",
+    fundingInformation: "$35M Series B",
+    benefits: "Cloud labs, certification support, hybrid work",
+    cultureInformation: "Operationally mature, security-focused, and learning-oriented.",
+    referralAvailability: false,
+    hiringStatus: "Selective Hiring",
+    published: true,
+    featured: false,
+    lastUpdatedDate: "2026-08-05"
+  }
+];
+
+export const defaultReferralRequests = [
+  {
+    id: "ref-1",
+    startupId: "startup-1",
+    companyName: "TechNova",
+    jobId: "job-1",
+    internshipId: "",
+    opportunityTitle: "Junior React Developer",
+    fullName: "Demo Student",
+    email: "student@example.com",
+    phone: "+91 90000 00000",
+    linkedInProfile: "https://linkedin.com",
+    portfolioGithub: "https://github.com/demo",
+    resumeUpload: "",
+    currentLocation: "Bengaluru",
+    experience: "1 year",
+    currentRole: "Frontend learner",
+    skills: "React, JavaScript, CSS",
+    suitability: "I have built React projects and understand component-driven UI development.",
+    additionalMessage: "I would appreciate a referral for this role.",
+    status: "Under Review",
+    assignedHr: "Anika HR",
+    assignedReferrer: "Riya Sharma",
+    notes: "Candidate looks aligned with frontend role.",
+    createdAt: "2026-08-10"
+  }
+];
+
+export const defaultAiSearchHistory = [
+  { id: "ai-search-1", query: "AI startups hiring React developers in Bengaluru", extractedIntent: "industry=AI; skills=React; location=Bengaluru", createdAt: "2026-08-10" }
+];
+
+export const defaultAiRecommendations = [
+  { id: "ai-rec-1", candidateId: "user-1", type: "job-match", entityId: "job-1", score: 82, matchingSkills: "React, JavaScript, CSS", missingSkills: "Docker, AWS", recommendation: "Review AWS Cloud Practitioner and Docker basics before applying.", createdAt: "2026-08-10" }
 ];
 
 export const defaultCompanies = [

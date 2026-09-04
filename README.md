@@ -5,9 +5,15 @@ A modern responsive educational and career platform built with React, React Rout
 ## Features
 
 - Sticky top navigation
-- Dedicated pages: Home, Jobs, Internships, Courses, Resources, Companies, About, Contact
+- Dedicated pages: Home, Startups, Jobs, Internships, Courses, Resources, Companies, About, Contact
 - Admin Login and protected Admin Dashboard
-- Admin CRUD for Jobs, Internships, Courses, Resources, Companies, and Home Page Content
+- Admin CRUD for Jobs, Internships, Courses, Resources, Learning Platforms, Study Materials, Certifications, Startups, Referrals, Companies, AI records, and Home Page Content
+- Startup directory with searchable profiles, stages, locations, technologies, hiring status, open opportunities, and referral availability
+- Startup profile pages connected to existing jobs, internships, referral requests, and interview experiences
+- Smart referral form that auto-populates selected company, job, or internship context
+- Candidate referral status tracking across Submitted, Under Review, Referral Available, Referred, Application Submitted, Interview, Selected, and Rejected
+- AI Career Assistant UI for data-grounded startup discovery, job matching, course recommendations, certification recommendations, and interview preparation
+- Node API starter endpoints for startups, referral statuses, and AI startup search with configurable provider environment variables
 - RMS collections for Applications, Interview Questions, Interview Experiences, Notifications, and Activity Logs
 - Role portal routes for Super Admin, Admin, HR, Hiring Manager, and Candidate workspaces
 - Recruitment pipeline stages from Applied through Joined/Rejected
@@ -52,6 +58,10 @@ The current demo stores admin session, portal data, RMS records, and approval wo
 
 - `/interview-questions`
 - `/interview-experiences`
+- `/startups`
+- `/startups/:startupId`
+- `/referrals/new`
+- `/ai-career-assistant`
 - `/portal/super-admin`
 - `/portal/admin`
 - `/portal/hr`
@@ -60,7 +70,23 @@ The current demo stores admin session, portal data, RMS records, and approval wo
 
 ## Security Notes
 
-Production security should include JWT authentication, bcrypt password hashing, role-based access control, server-side input validation, CSRF/XSS protections, secure headers, and API authorization middleware. `.env.example` includes the required environment variables.
+Production security should include JWT authentication, bcrypt password hashing, role-based access control, server-side input validation, CSRF/XSS protections, secure headers, API authorization middleware, private resume upload handling, and scoped access for Admin, HR, Candidate, and Referrer roles. `.env.example` includes database, admin, and AI provider variables.
+
+## AI Architecture
+
+```text
+Frontend
+  -> Backend API
+    -> PostgreSQL
+    -> AI Service
+      -> Smart Startup Search
+      -> Job Matching
+      -> Resume Analysis
+      -> Referral Assistant
+      -> Interview Preparation
+```
+
+AI features must query real database records before producing suggestions. Generated recommendations are advisory and must be clearly separated from verified job, internship, startup, referral, and interview records.
 
 ## Folder Structure
 

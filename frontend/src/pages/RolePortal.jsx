@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import PageHeader from "../components/PageHeader.jsx";
-import { pipelineStages } from "../data/siteData.js";
+import { pipelineStages, referralStatuses } from "../data/siteData.js";
 import { readTable } from "../data/store.js";
 
 const portalMeta = {
@@ -23,6 +23,7 @@ export default function RolePortal() {
   const notifications = readTable("notifications");
   const questions = readTable("interviewQuestions");
   const experiences = readTable("interviewExperiences");
+  const referrals = readTable("referralRequests");
   const roleLabel = role.replace("-", " ");
 
   return (
@@ -33,6 +34,30 @@ export default function RolePortal() {
         <Metric label="Applications" value={applications.length} />
         <Metric label="Pending Content" value={[...questions, ...experiences].filter((item) => item.status === "Pending").length} />
         <Metric label="Notifications" value={notifications.length} />
+      </section>
+      <section className="premium-card p-5">
+        <h2 className="text-2xl font-bold text-primaryText">Referral Status Tracking</h2>
+        <div className="mt-5 grid gap-4 lg:grid-cols-[280px_1fr]">
+          <div className="rounded-2xl border border-border bg-elevated p-4">
+            <strong className="text-3xl text-primary">{referrals.length}</strong>
+            <p className="mt-2 text-sm font-bold text-secondaryText">Referral requests connected to startups, jobs, and internships.</p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-4">
+            {referralStatuses.map((status) => (
+              <div key={status} className="rounded-2xl border border-border bg-elevated p-3 text-sm font-bold text-secondaryText">
+                {status}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3">
+          {referrals.map((item) => (
+            <div key={item.id} className="rounded-2xl border border-border bg-elevated p-4">
+              <p className="font-bold text-primaryText">{item.companyName} - {item.opportunityTitle}</p>
+              <p className="mt-1 text-sm text-secondaryText">{item.fullName} | {item.status} | HR: {item.assignedHr || "Unassigned"}</p>
+            </div>
+          ))}
+        </div>
       </section>
       <section className="glass rounded-3xl p-5">
         <h2 className="text-2xl font-black capitalize">{roleLabel} Permissions</h2>

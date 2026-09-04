@@ -15,6 +15,10 @@ import {
   defaultResources,
   defaultStudyMaterials,
   defaultCertifications,
+  defaultStartups,
+  defaultReferralRequests,
+  defaultAiSearchHistory,
+  defaultAiRecommendations,
   defaultTestimonials,
   defaultUsers
 } from "./siteData.js";
@@ -27,6 +31,10 @@ const seed = {
   learningPlatforms: defaultLearningPlatforms,
   studyMaterials: defaultStudyMaterials,
   certifications: defaultCertifications,
+  startups: defaultStartups,
+  referralRequests: defaultReferralRequests,
+  aiSearchHistory: defaultAiSearchHistory,
+  aiRecommendations: defaultAiRecommendations,
   companies: defaultCompanies,
   users: defaultUsers,
   messages: defaultMessages,
