@@ -29,13 +29,13 @@ const navGroups = [
 ];
 
 const profileItems = [
-  ["My Profile", "/portal/candidate"],
-  ["My Dashboard", "/portal/candidate"],
-  ["Applications", "/portal/candidate"],
+  ["My Profile", "/candidate-dashboard"],
+  ["My Dashboard", "/candidate-dashboard"],
+  ["Applications", "/candidate-dashboard"],
   ["Saved Opportunities", "/jobs"],
-  ["Referral Requests", "/portal/candidate"],
-  ["Notifications", "/portal/candidate"],
-  ["Settings", "/portal/candidate"],
+  ["Referral Requests", "/candidate-dashboard"],
+  ["Notifications", "/candidate-dashboard"],
+  ["Settings", "/candidate-dashboard"],
   ["Logout", "/"]
 ];
 

@@ -38,6 +38,29 @@ npm run dev -- --port 5173
 
 Open `http://127.0.0.1:5173`.
 
+### Node API and PostgreSQL
+
+Node is the primary backend; the Python and Java folders remain optional,
+standalone prototypes and are not wired into the web application. Copy
+`.env.example` to `.env`, configure a reachable
+PostgreSQL database, then run:
+
+```bash
+npm install
+npm run db:up
+npm --workspace backend-node run migrate
+npm --workspace backend-node run seed
+npm --workspace backend-node start
+```
+
+`npm run db:up` requires Docker Desktop and uses the persistent
+`careergrid-postgres` volume defined in `docker-compose.yml`. Set
+`DB_PASSWORD` in the shell or `.env` before starting it.
+
+Without PostgreSQL, data endpoints return `503` and `/api/health` reports the
+backend and database status separately. For local UI work only, set
+`DEV_FALLBACK=true`; responses are explicitly marked as non-persistent fallback data.
+
 ## Build
 
 ```bash
@@ -47,12 +70,10 @@ npm run build
 
 ## Admin Login
 
-Demo credentials:
-
-- Username/email: `admin@newwebsite.dev`
-- Password: `cyber-admin`
-
-The current demo stores admin session, portal data, RMS records, and approval workflows in browser storage. For production, connect the data adapter to the Node API and database using the schema in `database/schema.sql`.
+Run the seed command with `ADMIN_EMAIL` and either `ADMIN_PASSWORD_HASH` or
+`ADMIN_PASSWORD`. The frontend authenticates against the Node API using JWT;
+application data is loaded through the API. Only theme preference remains in
+browser storage.
 
 ## RMS Routes
 
@@ -93,7 +114,7 @@ AI features must query real database records before producing suggestions. Gener
 ```text
 frontend/src/admin       Admin auth, protected route, dashboard
 frontend/src/components  Navbar/layout, cards, page headers
-frontend/src/data        Seed data and local data adapter
+frontend/src/data        API client, hydration adapter, and UI seed types
 frontend/src/pages       Public route pages
 database/               SQL schema and migration notes
 backend-node/            Node API starter
@@ -104,6 +125,7 @@ backend-java/            Java API starter
 ## Deployment
 
 1. Set environment variables from `.env.example`.
-2. Build the frontend with `npm run build`.
-3. Serve `frontend/dist` on your static host or deploy with your preferred platform.
-4. Connect backend API and database for production persistence.
+2. Apply migrations and seed an administrator.
+3. Build the frontend with `npm run build`.
+4. Serve `frontend/dist` and the Node API behind TLS.
+5. Verify PostgreSQL connectivity and persistence before calling the deployment production-ready.

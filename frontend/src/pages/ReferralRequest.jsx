@@ -41,7 +41,7 @@ export default function ReferralRequest() {
       notes: ""
     });
     alert("Referral request submitted successfully.");
-    navigate("/portal/candidate");
+    navigate("/candidate-dashboard");
   };
 
   return (

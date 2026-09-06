@@ -22,11 +22,52 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import InterviewQuestions from "./pages/InterviewQuestions.jsx";
 import InterviewExperiences from "./pages/InterviewExperiences.jsx";
-import RolePortal from "./pages/RolePortal.jsx";
+import CandidateDashboard from "./pages/CandidateDashboard.jsx";
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
+import { hydrateStore } from "./data/store.js";
 
-createRoot(document.getElementById("root")).render(
+function LoadingScreen() {
+  return (
+    <main className="loading-screen" aria-live="polite" aria-label="Loading CareerGrid">
+      <div className="loading-card">
+        <div className="loading-logo" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <p className="loading-brand">CareerGrid</p>
+        <p className="loading-message">Preparing your career journey</p>
+        <div className="loading-progress" role="progressbar" aria-label="Loading" />
+      </div>
+    </main>
+  );
+}
+
+function App() {
+  const [loading, setLoading] = React.useState(true);
+  const [startupError, setStartupError] = React.useState("");
+
+  React.useEffect(() => {
+    let active = true;
+    Promise.all([
+      hydrateStore(),
+      new Promise((resolve) => window.setTimeout(resolve, 350))
+    ]).then(() => {
+      if (active) setLoading(false);
+    }).catch((error) => {
+      if (active) {
+        setStartupError(error.message);
+        setLoading(false);
+      }
+    });
+    return () => { active = false; };
+  }, []);
+
+  if (loading) return <LoadingScreen />;
+  if (startupError) return <main className="loading-screen"><div className="loading-card"><p className="loading-brand">CareerGrid API unavailable</p><p className="loading-message">{startupError} Configure PostgreSQL or explicitly enable DEV_FALLBACK=true for local development.</p></div></main>;
+
+  return (
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -48,7 +89,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="contact" element={<Contact />} />
           <Route path="interview-questions" element={<InterviewQuestions />} />
           <Route path="interview-experiences" element={<InterviewExperiences />} />
-          <Route path="portal/:role" element={<RolePortal />} />
+          <Route path="candidate-dashboard" element={<CandidateDashboard />} />
         </Route>
         <Route path="admin/login" element={<AdminLogin />} />
         <Route path="admin" element={<ProtectedAdminRoute><AdminLayout /></ProtectedAdminRoute>}>
@@ -58,4 +99,7 @@ createRoot(document.getElementById("root")).render(
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
-);
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);

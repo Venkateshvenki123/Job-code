@@ -3,7 +3,10 @@
 Apply `database/schema.sql` to create the base collections/tables:
 Users, Admins, Companies, Startup Profiles, Startup Categories, Jobs, Internships, Courses, Resources, Contact Messages, Testimonials, Categories, Roles, Applications, Candidate Profiles, Candidate Skills, Job Skills, Referrers, Referral Requests, Referral Status History, Interview Schedules, Interview Feedback, Interview Questions, Interview Experiences, Notifications, Activity Logs, AI Search History, and AI Recommendations.
 
-The current frontend implementation uses localStorage as an in-browser data adapter for demo/admin/RMS/startup/referral CRUD. The schema is ready for replacing that adapter with a real API-backed PostgreSQL database shared by public web, Admin, HR, Hiring Manager, Candidate, Referrer, AI services, and mobile clients.
+The Node API is the primary application data adapter. The frontend keeps only
+theme preference in browser storage and loads core records through the API.
+`DEV_FALLBACK=true` is an explicitly labeled, non-persistent development mode;
+production deployments must use PostgreSQL.
 
 Relationship model:
 

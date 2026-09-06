@@ -30,7 +30,7 @@ export default function StartupProfile() {
             </div>
             <p className="mt-6 max-w-3xl leading-7 text-secondaryText">{startup.description}</p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {[startup.industry, startup.stage, startup.fundingStage, startup.remoteAvailability].map((item) => <span className="badge" key={item}>{item}</span>)}
+              {[startup.industry, startup.stage, startup.fundingStage, startup.remoteAvailability].map((item, index) => <span className="badge" key={`${item}-${index}`}>{item}</span>)}
             </div>
           </div>
           <aside className="rounded-3xl border border-border bg-elevated p-5">

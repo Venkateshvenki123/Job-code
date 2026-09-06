@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { BarChart3, Clock, Database, Edit3, Eye, Plus, RefreshCw, Star, Trash2 } from "lucide-react";
 import { defaultHomeContent } from "../data/siteData.js";
 import { createItem, deleteItem, isExpired, readRecord, readTable, updateItem, writeRecord } from "../data/store.js";
@@ -340,7 +341,10 @@ function HomeContentManager({ refresh }) {
 
 export default function AdminDashboard() {
   const [, setVersion] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
   const refresh = () => setVersion((value) => value + 1);
+  const section = searchParams.get("section") || "overview";
+  const tab = searchParams.get("tab") || "jobs";
   const jobs = readTable("jobs");
   const internships = readTable("internships");
   const courses = readTable("courses");
@@ -355,17 +359,40 @@ export default function AdminDashboard() {
 
   const stats = [
     { label: "Total Jobs", value: jobs.length, icon: Database },
-    { label: "Total Internships", value: internships.length, icon: Database },
-    { label: "Total Courses", value: courses.length, icon: Database },
-    { label: "Total Resources", value: resources.length, icon: Database },
-    { label: "Total Companies", value: companies.length, icon: Database },
-    { label: "Total Users", value: users.length, icon: Database },
-    { label: "Expired Jobs", value: jobs.filter(isExpired).length, icon: Clock, tone: "danger" },
-    { label: "Expired Internships", value: internships.filter(isExpired).length, icon: Clock, tone: "danger" }
+    { label: "Active Internships", value: internships.filter((item) => !isExpired(item)).length, icon: Database },
+    { label: "Candidates", value: users.length, icon: Database },
+    { label: "Pending Referrals", value: readTable("referralRequests").filter((item) => item.status === "Submitted" || item.status === "Under Review").length, icon: Clock, tone: "gold" }
   ];
+  const groups = {
+    content: [["jobs", "Jobs", "jobs"], ["internships", "Internships", "internships"], ["courses", "Courses", "courses"], ["resources", "Resources", "resources"], ["startups", "Startups", "startups"], ["companies", "Companies", "companies"]],
+    learning: [["platforms", "Platforms", "learningPlatforms"], ["materials", "Materials", "studyMaterials"], ["certifications", "Certifications", "certifications"], ["questions", "Questions", "interviewQuestions"], ["experiences", "Experiences", "interviewExperiences"]],
+    recruitment: [["referrals", "Referrals", "referralRequests"], ["candidates", "Candidates", "users"], ["applications", "Applications", "applications"]],
+    users: [["users", "Users", "users"], ["roles", "Roles", null], ["hr", "HR Accounts", null], ["managers", "Managers", null]],
+    settings: [["general", "General", null], ["website", "Website", "homeContent"], ["system", "System Preferences", null]]
+  };
+  const group = groups[section];
+  const selected = group?.find(([key]) => key === tab) || group?.[0];
+  const chooseTab = (nextTab) => setSearchParams({ section, tab: nextTab });
+  const manager = selected?.[2] === "homeContent"
+    ? <HomeContentManager refresh={refresh} />
+    : selected?.[2]
+      ? <CrudManager name={selected[2]} refresh={refresh} />
+      : <section className="premium-card p-6"><h2 className="text-2xl font-bold text-primaryText">{selected?.[1] || "Workspace"}</h2><p className="mt-2 text-secondaryText">This management area is ready for the next role-specific workflow.</p></section>;
 
   return (
     <div className="page-enter space-y-8">
+      {section !== "overview" && (
+        <>
+          <section className="premium-card p-6">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">Admin workspace</p>
+            <h1 className="mt-2 text-3xl font-bold text-primaryText">{section === "content" ? "Content" : section === "learning" ? "Learning Hub" : section === "recruitment" ? "Recruitment" : section === "users" ? "Users" : "Settings"}</h1>
+            <p className="mt-2 text-secondaryText">Manage related records in one focused workspace.</p>
+            <div className="mt-5 flex gap-2 overflow-x-auto pb-1">{group?.map(([key, label]) => <button key={key} onClick={() => chooseTab(key)} className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold ${key === selected?.[0] ? "bg-primary text-white" : "border border-border text-secondaryText hover:text-primary"}`}>{label}</button>)}</div>
+          </section>
+          {manager}
+        </>
+      )}
+      {section === "overview" && <>
       <section className="premium-card overflow-hidden p-0">
         <div className="grid gap-6 bg-gradient-to-br from-primary/15 via-transparent to-background p-6 lg:grid-cols-[1fr_360px] lg:p-8">
           <div>
@@ -418,22 +445,8 @@ export default function AdminDashboard() {
         </article>
       </section>
 
-      <HomeContentManager refresh={refresh} />
-      {Object.keys(configs).map((name) => (
-        <CrudManager key={name} name={name} refresh={refresh} />
-      ))}
-
-      <section className="premium-card p-5">
-        <h2 className="text-2xl font-bold text-primaryText">Contact Messages</h2>
-        <div className="mt-5 grid gap-3">
-          {readTable("messages").map((msg) => (
-            <div className="rounded-2xl border border-border bg-elevated p-4 text-sm text-secondaryText" key={msg.id}>
-              <strong className="text-primaryText">{msg.name}</strong> - {msg.email}: {msg.message}
-            </div>
-          ))}
-          {readTable("messages").length === 0 && <p className="text-secondaryText">No contact messages yet.</p>}
-        </div>
-      </section>
+      <section className="premium-card p-5"><h2 className="text-2xl font-bold text-primaryText">Quick Actions</h2><div className="mt-5 flex flex-wrap gap-3">{[["Add Job", "content", "jobs"], ["Add Internship", "content", "internships"], ["Add Course", "content", "courses"], ["View Referrals", "recruitment", "referrals"]].map(([label, nextSection, nextTab]) => <button key={label} onClick={() => setSearchParams({ section: nextSection, tab: nextTab })} className="btn-primary">{label}</button>)}</div></section>
+      </>}
     </div>
   );
 }

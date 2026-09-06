@@ -7,17 +7,22 @@ export default function AdminLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("admin@newwebsite.dev");
-  const [password, setPassword] = useState("cyber-admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setMessage(consumeLogoutMessage() || "");
+    const logoutMessage = consumeLogoutMessage();
+    if (logoutMessage) setMessage(logoutMessage);
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    loginAdmin();
-    navigate(location.state?.from || "/admin", { replace: true });
+    try {
+      await loginAdmin(email, password);
+      navigate(location.state?.from || "/admin", { replace: true });
+    } catch (error) {
+      setMessage(error.message);
+    }
   };
 
   return (
@@ -37,7 +42,7 @@ export default function AdminLogin() {
             <ShieldCheck className="h-4 w-4" /> Login
           </button>
         </form>
-        <p className="mt-5 text-xs text-muted">Demo: admin@newwebsite.dev / cyber-admin</p>
+        <p className="mt-5 text-xs text-muted">Administrator credentials are configured through the Node API seed command.</p>
       </section>
     </div>
   );
