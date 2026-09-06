@@ -7,6 +7,7 @@ A modern responsive educational and career platform built with React, React Rout
 - Sticky top navigation
 - Dedicated pages: Home, Startups, Jobs, Internships, Courses, Resources, Companies, About, Contact
 - Admin Login and protected Admin Dashboard
+- Simplified admin navigation with Overview, Content, Learning Hub, Recruitment, Users, and Settings workspaces
 - Admin CRUD for Jobs, Internships, Courses, Resources, Learning Platforms, Study Materials, Certifications, Startups, Referrals, Companies, AI records, and Home Page Content
 - Startup directory with searchable profiles, stages, locations, technologies, hiring status, open opportunities, and referral availability
 - Startup profile pages connected to existing jobs, internships, referral requests, and interview experiences
@@ -61,6 +62,15 @@ Without PostgreSQL, data endpoints return `503` and `/api/health` reports the
 backend and database status separately. For local UI work only, set
 `DEV_FALLBACK=true`; responses are explicitly marked as non-persistent fallback data.
 
+Check the backend connection with:
+
+```bash
+curl http://127.0.0.1:5000/api/health
+```
+
+The production-backed response reports `backend`, `database`, and `fallback`
+status. `fallback` must be `false` before using the API with persistent data.
+
 ## Build
 
 ```bash
@@ -74,6 +84,18 @@ Run the seed command with `ADMIN_EMAIL` and either `ADMIN_PASSWORD_HASH` or
 `ADMIN_PASSWORD`. The frontend authenticates against the Node API using JWT;
 application data is loaded through the API. Only theme preference remains in
 browser storage.
+
+The admin dashboard is organized into these workspaces:
+
+- `/admin` — Overview, statistics, recent activity, and quick actions
+- `/admin?section=content&tab=jobs` — Jobs, Internships, Courses, Resources, Startups, and Companies
+- `/admin?section=learning&tab=platforms` — Learning Platforms, Study Materials, Certifications, Interview Questions, and Experiences
+- `/admin?section=recruitment&tab=referrals` — Referrals, Candidates, and Applications
+- `/admin?section=users&tab=users` — Users, roles, HR accounts, and managers
+- `/admin?section=settings&tab=general` — General, website, and system preferences
+
+Notifications are available from the bell in the admin header. Existing public
+routes and backend CRUD capabilities remain unchanged.
 
 ## RMS Routes
 
@@ -129,3 +151,11 @@ backend-java/            Java API starter
 3. Build the frontend with `npm run build`.
 4. Serve `frontend/dist` and the Node API behind TLS.
 5. Verify PostgreSQL connectivity and persistence before calling the deployment production-ready.
+
+For a local PostgreSQL installation, use a connection string such as:
+
+```text
+DATABASE_URL=postgresql://USER:PASSWORD@127.0.0.1:5432/careergrid
+```
+
+Do not commit `.env`, database passwords, JWT secrets, or provider API keys.
